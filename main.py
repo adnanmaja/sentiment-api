@@ -2,6 +2,9 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 import sys
 from pathlib import Path
+from flask_restx import Api, Resource, fields
+from src.api.documentation.posts_docs import ns as posts_ns
+from src.api.documentation.auth_docs import auth_ns
 
 sys.path.insert(0, str(Path(__file__).parent))
 
@@ -14,10 +17,26 @@ CORS(app)
 
 app = init_app(app)
 
+api = Api(
+    version='1.0',
+    title='API Schwarzenegger',
+    description='API',
+    doc='/docs',
+    prefix='/api'
+)
+api.init_app(app)
+
 app.register_blueprint(register.bp, url_prefix="/api")
 app.register_blueprint(login.bp, url_prefix="/api")
 app.register_blueprint(pwchange.bp, url_prefix="/api")
 app.register_blueprint(post.bp, url_prefix="/api")
+
+api.add_namespace(posts_ns)
+api.add_namespace(auth_ns)
+
+@app.route("/api/docs")
+def info():
+    return jsonify({"message":"woi"})
 
 @app.route("/")
 def app_root():

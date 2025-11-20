@@ -34,3 +34,13 @@ Admin dashboard showing real-time analytics
 ## Stuff
 Incoming post → sentiment classifier → distillbert
 Extract topics → zero-shot classifier with custom categories
+
+GET /api/posts - Get all posts (with pagination)
+GET /api/posts/{post_id} - Get specific post
+PUT /api/posts/{post_id} - Update post (author only)
+DELETE /api/posts/{post_id} - Delete post (author only)
+GET /api/users/{user_id}/posts - Get user's posts
+
+GET /api/users/me - Get current user profile
+PUT /api/users/me - Update user profile
+GET /api/users/{user_id} - Get specific user (public info)
