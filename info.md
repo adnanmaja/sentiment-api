@@ -30,3 +30,7 @@ Admin dashboard showing real-time analytics
 - Simple sentiment analysis (TextBlob/VADER - free, no API costs)
 - Redis caching for feed
 - JWT auth (skip OAuth initially)
+
+## Stuff
+Incoming post → sentiment classifier → distillbert
+Extract topics → zero-shot classifier with custom categories

@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from sqlalchemy.dialects.postgresql import UUID, JSON
 from sqlalchemy.orm import relationship
 import uuid
+from typing import Optional
 
 # === Importnya gjls error mulu, pake ini dulu aj dh ===================
 
@@ -35,22 +36,22 @@ class User(db.Model):
 
 class Post(db.Model):  
     __tablename__="posts"
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    user_id = db.Column(UUID(as_uuid=True), ForeignKey('users.id'), nullable=False)
-    title = db.Column(String(300))
+    id = db.Column(UUID(as_uuid=False), primary_key=True, default=uuid.uuid4)
+    user_id = db.Column(UUID(as_uuid=True), ForeignKey('users.id'), nullable=False) 
     content = db.Column(Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
 
     user = relationship("User", back_populates="posts")
     analysis = relationship("Analysis", back_populates="post", uselist=False)
 
-class Analysis(db.Model):  
+class Analysis(db.Model):
     __tablename__="analysis"
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    post_id = db.Column(UUID(as_uuid=True), ForeignKey('posts.id'), nullable=False, unique=True)
+    id = db.Column(UUID(as_uuid=False), primary_key=True, default=uuid.uuid4)
+    post_id = db.Column(UUID(as_uuid=False), ForeignKey('posts.id'), nullable=False, unique=True)
+    sentiment = db.Column(String)
     sentiment_score = db.Column(Float)  
-    tags = db.Column(JSON)  
+    category = db.Column(String)
+    category_score = db.Column(Float) 
     analyzed_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
 
     post = relationship("Post", back_populates="analysis")
-
