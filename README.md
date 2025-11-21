@@ -1,7 +1,7 @@
 # API Documentation
 
 **Base URL**
-All endpoints are prefixed with /api
+- All endpoints are prefixed with /api
 
 **Authentication**
 - Most endpoints require JWT Bearer token authentication
@@ -43,7 +43,7 @@ curl -X POST -H "Content-Type: application/json" -d "{\"email\":\"tes4@gmail.com
 ```
 
 #### POST /change-password
-Change user password (requires authentication).
+Change user password (requires authentication token).
 
 **Request Body**
 ```
@@ -62,9 +62,26 @@ http://127.0.0.1:5000/api/change-password
 
 ```
 
+#### GET /me
+current user
+
+**Example response**
+```
+{
+    "message": "Here's whatever the fuck you wanted to see:",
+    "user": {
+        "created_at": "Fri, 21 Nov 2025 04:26:36 GMT",
+        "email": "tes5@gmail.com",
+        "id": "8a29dccc-8240-4009-bdcc-f7898d2e86d6",
+        "is_active": true,
+        "name": "tes5"
+    }
+}
+```
+
 ### Posts
 #### POST /posts
-Create a post (upload the content, require token)
+Create a post (requires authentication token)
 
 **Request Body**
 ```
@@ -80,3 +97,60 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer eyJhb
 ```
 
 ## GraphQL Endpoints
+### POST /graphql
+- Execute GraphQL queries and mutations.
+- Base URL: http://localhost:5000/api/graphql
+
+### Schema Overview
+#### Main Query
+```userAnalysisHistory``` Fetch a user's analysis records with filtering and pagination
+#### Types
+- ```User``` User Information
+- ```Post``` User posts with content
+- ```Analysis``` Sentiment analysis results
+
+### Example query
+
+#### GraphQL Query:
+```
+query GetUserAnalysis($userId: ID!, $limit: Int, $offset: Int) {
+  userAnalysisHistory(userId: $userId, limit: $limit, offset: $offset) {
+    id
+    sentiment
+    sentimentScore
+    category
+    categoryScore
+    analyzedAt
+    post {
+      id
+      content
+      createdAt
+      user {
+        id
+        name
+        email
+        createdAt
+      }
+    }
+  }
+}
+```
+
+#### Variables
+```
+{
+  "userId": "0004ba55-877e-44f5-847f-77ae6b05c8a1",
+  "limit": 5,
+  "offset": 0
+}
+```
+
+## File Structure Reference
+- ```src/api/routes``` rest endpoints
+- ```src/api/documentation``` swagger ui, gakepake wkw
+- ```src/api/graphql``` graphql resolver, schema, and endpoint
+- ```src/database``` database connection
+- ```src/ml_model``` transformer models inference
+- ```src/schemas``` request/response pydantic schemas
+- ```src/models``` database model
+

@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import create_access_token, create_refresh_token
+from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity
 
 from ...schemas.user import UserLogin, UserResponse,  TokenResponse
 from ...models.model import User
@@ -43,3 +43,28 @@ def login():
         
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
+@bp.route('/me', methods=['GET'])
+@jwt_required()
+def get_current_user():
+    try:
+        # Get user ID from JWT token
+        current_user_id = get_jwt_identity()
+        
+        # Query the user from database
+        user = User.query.filter_by(id=current_user_id).first()
+        
+        if not user:
+            return jsonify({'error': 'User not found'}), 404
+        
+        if not user.is_active:
+            return jsonify({'error': 'User account is inactive'}), 401
+        
+        # Return whatever the fuck the user wants to see
+        user_response = UserResponse.model_validate(user)
+        return jsonify({
+            'user': user_response.model_dump()
+        }), 200
+        
+    except Exception as e:
+        return jsonify({'error': f'Something fucked up: {str(e)}'}), 500
