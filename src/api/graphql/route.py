@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from ariadne import load_schema_from_path, make_executable_schema, graphql_sync, ObjectType
 from .resolvers import query, resolve_datetime_field, resolve_post_analysis, resolve_post_user
+from flask_jwt_extended import jwt_required
 
 
 bp = Blueprint('graphql', __name__)
@@ -50,6 +51,7 @@ def graphql_playground():
 
 # GraphQL endpoint
 @bp.route("/graphql", methods=["POST"])
+@jwt_required()
 def graphql_server():
     data = request.get_json()
     success, result = graphql_sync(
