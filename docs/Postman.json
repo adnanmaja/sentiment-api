@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "17e9f63c-60e0-4150-a439-08ab15188016",
+		"name": "My Collection",
+		"description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50248715",
+		"_collection_link": "https://rafaadnan46-246779.postman.co/workspace/Rafa-Adnan's-Workspace~79484020-856b-44be-8bcc-f7cd53419b0a/collection/50248715-17e9f63c-60e0-4150-a439-08ab15188016?action=share&source=collection_link&creator=50248715"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"tes5\",\r\n  \"email\": \"tes5@gmail.com\",\r\n  \"password\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				},
+				"description": "h"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"tes5@gmail.com\",\r\n  \"password\": \"string\"\r\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Me",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MzY5OTQzNCwianRpIjoiN2JiMmI0ZTAtYmNkZS00NDgwLTlmOWYtNjQ0ZGI4Zjk5NTFkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjhhMjlkY2NjLTgyNDAtNDAwOS1iZGNjLWY3ODk4ZDJlODZkNiIsIm5iZiI6MTc2MzY5OTQzNCwiY3NyZiI6ImNjZjZmMmM5LWU3MTQtNDFmMi05YTlkLWFhOTBiNzI3OGE1OCIsImV4cCI6MTc2MzcwMzAzNCwidG9rZW5fdmVyc2lvbiI6InYxIn0.FrJyT1FElBHkpXMz5J_KjAkgnQe40M_0CrUd-8tyZ5M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"tes5@gmail.com\",\r\n  \"password\": \"string\"\r\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/me",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MzY5OTQzNCwianRpIjoiN2JiMmI0ZTAtYmNkZS00NDgwLTlmOWYtNjQ0ZGI4Zjk5NTFkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjhhMjlkY2NjLTgyNDAtNDAwOS1iZGNjLWY3ODk4ZDJlODZkNiIsIm5iZiI6MTc2MzY5OTQzNCwiY3NyZiI6ImNjZjZmMmM5LWU3MTQtNDFmMi05YTlkLWFhOTBiNzI3OGE1OCIsImV4cCI6MTc2MzcwMzAzNCwidG9rZW5fdmVyc2lvbiI6InYxIn0.FrJyT1FElBHkpXMz5J_KjAkgnQe40M_0CrUd-8tyZ5M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"content\": \"Hi guys how r yall\"\r\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/post",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "graphql",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"query\": \"query UserHistory { userAnalysisHistory(userId: \\\"0004ba55-877e-44f5-847f-77ae6b05c8a1\\\", limit: 5) { id sentiment sentimentScore post { id content } } }\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/graphql",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MzY5OTQzNCwianRpIjoiN2JiMmI0ZTAtYmNkZS00NDgwLTlmOWYtNjQ0ZGI4Zjk5NTFkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjhhMjlkY2NjLTgyNDAtNDAwOS1iZGNjLWY3ODk4ZDJlODZkNiIsIm5iZiI6MTc2MzY5OTQzNCwiY3NyZiI6ImNjZjZmMmM5LWU3MTQtNDFmMi05YTlkLWFhOTBiNzI3OGE1OCIsImV4cCI6MTc2MzcwMzAzNCwidG9rZW5fdmVyc2lvbiI6InYxIn0.FrJyT1FElBHkpXMz5J_KjAkgnQe40M_0CrUd-8tyZ5M",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"current_password\": \"string\",\r\n    \"new_password\": \"string\"\r\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/change-password",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"change-password"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
