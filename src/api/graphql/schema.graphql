@@ -1,0 +1,35 @@
+type Query {
+  userAnalysisHistory(
+    userId: ID!
+    sentiment: String
+    category: String
+    minSentimentScore: Float
+    maxSentimentScore: Float
+    limit: Int = 10
+    offset: Int = 0
+  ): [Analysis!]!
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  createdAt: String!
+}
+
+type Post {
+  id: ID!
+  content: String!
+  createdAt: String!
+  user: User!
+}
+
+type Analysis {
+  id: ID!
+  sentiment: String
+  sentimentScore: Float
+  category: String
+  categoryScore: Float
+  analyzedAt: String!
+  post: Post!
+}

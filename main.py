@@ -9,6 +9,7 @@ from src.api.documentation.auth_docs import auth_ns
 sys.path.insert(0, str(Path(__file__).parent))
 
 from src.api.routes import register, login, pwchange, post
+from src.api.graphql import route
 from src.database.db import init_app, db
 
 
@@ -30,6 +31,7 @@ app.register_blueprint(register.bp, url_prefix="/api")
 app.register_blueprint(login.bp, url_prefix="/api")
 app.register_blueprint(pwchange.bp, url_prefix="/api")
 app.register_blueprint(post.bp, url_prefix="/api")
+app.register_blueprint(route.bp, url_prefix="/api")
 
 api.add_namespace(posts_ns)
 api.add_namespace(auth_ns)
